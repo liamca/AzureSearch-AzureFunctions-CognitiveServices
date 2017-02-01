@@ -1,0 +1,10 @@
+{
+  "frameworks": {
+    "net46":{
+      "dependencies": {
+        "iTextSharp": "5.5.10",
+        "Microsoft.Azure.Search": "3.0.2"
+      }
+    }
+   }
+}
