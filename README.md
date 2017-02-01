@@ -1,4 +1,4 @@
-# AzureSearch-AzureFunctions-CognitiveServices
+# How To Enrich Unstructured Documents in an Azure Search Index
 Set of useful Azure Functions for doing advanced text processing such as Text Summarization and OCR on unstructured documents using Cognitive Services and Azure Functions
 
 The goal of these Azure Functions is to allow you to do additional processing over unstructured contents stored in Azure Blob's such as PDF and Office Docs.  The results of the processing allows you to enrich your Azure Search index with additional content.  For example, if there are images in your PDF, you can leverage Azure Cognitive Services to extract the text from the images which are then added to the Azure Search index to be searchable.  Below are the examples currently available.
