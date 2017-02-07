@@ -10,14 +10,14 @@ using Microsoft.Azure.Search;
 using Microsoft.Azure.Search.Models;
 using Microsoft.Azure.WebJobs.Host;
 
-private const string SearchServiceName = "azs-jltrtest";
-private const string SearchServiceAPIKey = "3B1A7ECF41966217EFDEDC9355779085";
-private const string IndexName = "oregonbriefs";
+private const string SearchServiceName = "XXXXXXXXX";
+private const string SearchServiceAPIKey = "XXXXXXXXX";
+private const string IndexName = "XXXXXXXXX";
 private const string KeyField = "metadata_storage_name";
 private const string SummaryField = "summary";
 private const string KeyPhrasesField = "keyPhrases";
 
-private const string TextAnalyticsAPIKey = "88bb26856dd3450eb6dfb42414f140b7";
+private const string TextAnalyticsAPIKey = "XXXXXXXXX";
 private const string CognitiveServicesBaseUrl = "https://westus.api.cognitive.microsoft.com";
 private static Uri CognitiveServicesUri = new Uri(CognitiveServicesBaseUrl + "/text/analytics/v2.0/keyPhrases");
 
@@ -96,7 +96,6 @@ private static async Task<Dictionary<string, int>> GetKeyPhrases(List<dynamic> d
     }
     return keyPhrases;
 }
-
 
 private static string BuildSummary(string content, IEnumerable<string> phrases)
 {

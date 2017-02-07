@@ -13,12 +13,13 @@ using Microsoft.Azure.Search.Models;
 using Microsoft.ProjectOxford.Vision;
 using Microsoft.ProjectOxford.Vision.Contract;
 
-private const string SearchServiceName = "azs-jltrtest";
-private const string SearchServiceAPIKey = "3B1A7ECF41966217EFDEDC9355779085";
+private const string SearchServiceName = "XXXXXXXXX";
+private const string SearchServiceAPIKey = "XXXXXXXXX";
 private const string IndexName = "oregonbriefs";
 private const string KeyField = "metadata_storage_name";
 private const string OcrField = "ocr";
-private const string SubscriptionKey = "da34437bdc9a49358c02de0a7ea6afbb";
+
+private const string VisionServiceSubscriptionKey = "XXXXXXXXX";
 
 public async static void Run(Stream blob, string blobName, TraceWriter log)
 {
@@ -30,7 +31,7 @@ public async static void Run(Stream blob, string blobName, TraceWriter log)
     try
     {
         log.Info($"Extracting text from images");
-        VisionServiceClient visionServiceClient = new VisionServiceClient(SubscriptionKey);
+        VisionServiceClient visionServiceClient = new VisionServiceClient(VisionServiceSubscriptionKey);
         foreach (Image image in images)
         {
             using (var stream = new MemoryStream())
