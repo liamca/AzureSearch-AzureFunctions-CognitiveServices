@@ -13,12 +13,12 @@ using Microsoft.Azure.Search.Models;
 using Microsoft.ProjectOxford.Vision;
 using Microsoft.ProjectOxford.Vision.Contract;
 
-private const string SearchServiceName = "XXXXXXXXX";
-private const string SearchServiceAPIKey = "XXXXXXXXX";
-private const string IndexName = "XXXXXXXXX";
+private const string SearchServiceName = "azs-jltrtest";
+private const string SearchServiceAPIKey = "3B1A7ECF41966217EFDEDC9355779085";
+private const string IndexName = "oregonbriefs";
 private const string KeyField = "metadata_storage_name";
 private const string OcrField = "ocr";
-private const string VisionServiceSubscriptionKey = "XXXXXXXXX";
+private const string SubscriptionKey = "da34437bdc9a49358c02de0a7ea6afbb";
 
 public async static void Run(Stream blob, string blobName, TraceWriter log)
 {
@@ -30,7 +30,7 @@ public async static void Run(Stream blob, string blobName, TraceWriter log)
     try
     {
         log.Info($"Extracting text from images");
-        VisionServiceClient visionServiceClient = new VisionServiceClient(VisionServiceSubscriptionKey);
+        VisionServiceClient visionServiceClient = new VisionServiceClient(SubscriptionKey);
         foreach (Image image in images)
         {
             using (var stream = new MemoryStream())
@@ -49,7 +49,7 @@ public async static void Run(Stream blob, string blobName, TraceWriter log)
 
             string documentId = HttpServerUtility.UrlTokenEncode(Encoding.UTF8.GetBytes(blobName));
             log.Info($"Uploading document to Azure Search using ID: {documentId}");
-            UploadToAzureSeearch(indexClient, documentId, log, extractedText.ToString());
+            await UploadToAzureSeearch(indexClient, documentId, extractedText.ToString(), log);
         }
     }
     catch (Exception ex)
@@ -58,7 +58,7 @@ public async static void Run(Stream blob, string blobName, TraceWriter log)
     }
 }
 
-private static async void UploadToAzureSeearch(ISearchIndexClient indexClient, string documentId, TraceWriter log, string extractedText)
+private static async Task UploadToAzureSeearch(ISearchIndexClient indexClient, string documentId, string extractedText, TraceWriter log)
 {
     var document = new Document();
     document.Add(KeyField, documentId);
