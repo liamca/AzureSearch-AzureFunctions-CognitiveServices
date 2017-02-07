@@ -15,7 +15,7 @@ using Microsoft.ProjectOxford.Vision.Contract;
 
 private const string SearchServiceName = "XXXXXXXXX";
 private const string SearchServiceAPIKey = "XXXXXXXXX";
-private const string IndexName = "oregonbriefs";
+private const string IndexName = "XXXXXXXXX";
 private const string KeyField = "metadata_storage_name";
 private const string OcrField = "ocr";
 
