@@ -18,6 +18,7 @@ private const string SearchServiceAPIKey = "XXXXXXXXX";
 private const string IndexName = "XXXXXXXXX";
 private const string KeyField = "metadata_storage_name";
 private const string OcrField = "ocr";
+
 private const string VisionServiceSubscriptionKey = "XXXXXXXXX";
 
 public async static void Run(Stream blob, string blobName, TraceWriter log)
@@ -49,7 +50,7 @@ public async static void Run(Stream blob, string blobName, TraceWriter log)
 
             string documentId = HttpServerUtility.UrlTokenEncode(Encoding.UTF8.GetBytes(blobName));
             log.Info($"Uploading document to Azure Search using ID: {documentId}");
-            UploadToAzureSeearch(indexClient, documentId, log, extractedText.ToString());
+            await UploadToAzureSeearch(indexClient, documentId, extractedText.ToString(), log);
         }
     }
     catch (Exception ex)
@@ -58,7 +59,7 @@ public async static void Run(Stream blob, string blobName, TraceWriter log)
     }
 }
 
-private static async void UploadToAzureSeearch(ISearchIndexClient indexClient, string documentId, TraceWriter log, string extractedText)
+private static async Task UploadToAzureSeearch(ISearchIndexClient indexClient, string documentId, string extractedText, TraceWriter log)
 {
     var document = new Document();
     document.Add(KeyField, documentId);
