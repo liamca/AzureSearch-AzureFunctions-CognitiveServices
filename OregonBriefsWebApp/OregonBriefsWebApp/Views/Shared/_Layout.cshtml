@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<style>
+    .selectRow {
+        display: block;
+        padding: 20px;
+    }
+
+    .select2-container {
+        width: 200px;
+    }
+</style>
+<head>
+    <!-- stylesheets -->
+    <link rel="stylesheet" href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.10/themes/redmond/jquery-ui.css">
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/select2.css" rel="stylesheet" />
+    <style type="text/css">
+        body {
+            padding: 40px;
+        }
+    </style>
+    <!-- scripts -->
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.2.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.11.2/jquery-ui.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        @RenderBody()
+    </div>
+</body>
+<script src="~/Scripts/bootstrap.min.js"></script>
+</html>

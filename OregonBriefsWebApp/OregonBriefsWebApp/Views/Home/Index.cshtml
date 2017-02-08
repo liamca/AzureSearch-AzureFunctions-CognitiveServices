@@ -1,0 +1,55 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<script>
+    var autoCompleteConfig;
+
+    $(document).ready(
+        function () {
+            $("#autocompleteTags").autocomplete({
+                source: "/home/SearchAutoComplete",
+                minLength: 2,
+                select: function (event, ui) {
+                    ExecuteSearch();
+                }
+            });
+        });
+
+    function ExecuteSearch() {
+        $("#results").html('Searching...')
+        var search = $("#autocompleteTags").val();
+
+        $.post('/home/searchQuery',
+        {
+            search: search
+        },
+        function (data) {
+            $("#results").html('');
+            for (var i = 0; i < data.ContentList.length; i++) {
+                $("#results").append('<h2><a href="' + data.ContentList[i].filename + '">' + data.ContentList[i].filename.substring(data.ContentList[i].filename.lastIndexOf("/") + 1) + '</a></h2>');
+                $("#results").append(data.ContentList[i].summary + '<br><hr>');
+                if (data.ContentList[i].phrases != null)
+                    $("#results").append(data.ContentList[i].phrases.substring(0,150) + '...<br><hr>');
+                $("#results").append(data.ContentList[i].content + '<br>');
+            }
+            $("#rowCount").html("Total Rows: " + data.TotalRows);
+        });
+    }
+</script>
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <input type="text" id="autocompleteTags" name='input' style="width:80%;float:left;height:30px;" />
+        <button onclick="ExecuteSearch();">Search</button><br clear="all">
+        <p id="rowCount"></p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div id="resultsDiv">
+            <div id="results"></div>
+        </div>
+    </div>
+</div>
