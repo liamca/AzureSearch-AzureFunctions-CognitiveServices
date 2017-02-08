@@ -1,7 +1,7 @@
 {
   "@odata.context": "https://azs-demos.search.windows.net/$metadata#indexes/$entity",
   "@odata.etag": "\"0x8D44FBEC415228C\"",
-  "name": "oregonbriefstr",
+  "name": "oregonbriefs",
   "fields": [
     {
       "name": "content",
