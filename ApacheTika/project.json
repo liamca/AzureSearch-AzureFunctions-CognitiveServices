@@ -1,0 +1,12 @@
+{
+  "frameworks": {
+    "net46":{
+      "dependencies": {
+        "TikaOnDotnet": "1.14.1",
+        "TikaOnDotnet.TextExtractor": "1.14.1",
+        "Microsoft.Azure.Search": "3.0.2",
+        "WindowsAzure.Storage": "8.1.1"
+      }
+    }
+   }
+}
